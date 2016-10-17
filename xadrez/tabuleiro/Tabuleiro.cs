@@ -26,8 +26,7 @@
             return peca(pos) != null;
         }
 
-        public Peca peca(Posicao pos)
-        {
+        public Peca peca(Posicao pos) {
             return pecas[pos.linha, pos.coluna];
         }
         public void colocarPeca(Peca p, Posicao pos)
