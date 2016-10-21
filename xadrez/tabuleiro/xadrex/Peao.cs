@@ -10,11 +10,10 @@ namespace xadrex
         private PartidaDeXadrez partida;
 
         public Peao(Tabuleiro tab, Cor cor, PartidaDeXadrez partida) : base(tab, cor) {
-            this.partida = partida;  
+            this.partida = partida;   
         }
 
-        public override string ToString()
-        {
+        public override string ToString() {
             return "P";
         }
 
@@ -65,19 +64,20 @@ namespace xadrex
                 {
                     Posicao esquerda = new Posicao(posicao.linha, posicao.coluna - 1);
                     if (tab.posicaoValida(esquerda) && existeInimigo(esquerda) && tab.peca(esquerda) == partida.vulneravelEnPassant) {
-                        mat[esquerda.linha, esquerda.coluna] = true; 
+                        mat[esquerda.linha - 1, esquerda.coluna] = true;
                     }
                     Posicao direita = new Posicao(posicao.linha, posicao.coluna + 1);
                     if (tab.posicaoValida(direita) && existeInimigo(direita) && tab.peca(direita) == partida.vulneravelEnPassant) {
-                        mat[direita.linha, direita.coluna] = true;
+                        mat[direita.linha - 1, direita.coluna] = true;
                     }
                 }
             }
 
-           
-            
 
-            else  {
+
+
+            else
+            {
 
                 pos.definirValores(posicao.linha + 1, posicao.coluna);
                 if (tab.posicaoValida(pos) && livre(pos))
@@ -103,17 +103,16 @@ namespace xadrex
                     mat[pos.linha, pos.coluna] = true;
                 }
                 // #jogadaespecial en passant
-                if (posicao.linha == 4)
-                {
+                if (posicao.linha == 4)  {
                     Posicao esquerda = new Posicao(posicao.linha, posicao.coluna - 1);
                     if (tab.posicaoValida(esquerda) && existeInimigo(esquerda) && tab.peca(esquerda) == partida.vulneravelEnPassant)
                     {
-                        mat[esquerda.linha, esquerda.coluna] = true;
+                        mat[esquerda.linha + 1, esquerda.coluna] = true;
                     }
                     Posicao direita = new Posicao(posicao.linha, posicao.coluna + 1);
                     if (tab.posicaoValida(direita) && existeInimigo(direita) && tab.peca(direita) == partida.vulneravelEnPassant)
                     {
-                        mat[direita.linha, direita.coluna] = true;
+                        mat[direita.linha + 1, direita.coluna] = true;
                     }
                 }
             }
